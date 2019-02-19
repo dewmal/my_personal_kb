@@ -1,4 +1,4 @@
-##Static content deploy issue
+## Static content deploy issue
 
 It got a solution, which may not be 100% right.
 
@@ -11,7 +11,8 @@ It got a solution, which may not be 100% right.
 ### If not update theme after upload
 
 ```
-    rm -R pub/static/frontend/*
-    rm -R var/view_preprocessed/pub/static/frontend/*
-    php  bin/magento setup:static-content:deploy -f
+rm -R pub/static/frontend/*
+rm -R var/view_preprocessed/pub/static/frontend/*
+php  bin/magento setup:static-content:deploy -f
+
 ```
