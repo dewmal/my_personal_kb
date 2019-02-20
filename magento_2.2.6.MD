@@ -16,3 +16,9 @@ rm -R var/view_preprocessed/pub/static/frontend/*
 php  bin/magento setup:static-content:deploy -f
 
 ```
+ ### if not update default.xml ( layout )
+ Check thyeme type in mysql table.
+ if should be 0, 1 mean virtual
+ ```
+ UPDATE rad_theme SET type=0;
+ ```
