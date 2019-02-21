@@ -22,3 +22,9 @@ php  bin/magento setup:static-content:deploy -f
  ```
  UPDATE rad_theme SET type=0;
  ```
+ 
+ ### There has been an error processing your request, Error log record number
+ 
+```
+Go to magento/var/report
+```
