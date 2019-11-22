@@ -1,0 +1,53 @@
+
+rpm -Uvh http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
+rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+
+
+### On CentOS/RHEL - 6 ###
+rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+Step 2 – Install Apache, MySQL and PHP
+Here is short instruction for the installation of LAMP stack. Its required to run the Laravel framework on your CentOS system. Use this guide for the detailed LAMP setup on CentOS
+
+Install Apache
+yum --enablerepo=remi,epel install httpd
+Install MySQL
+yum --enablerepo=remi,epel install mysql-server
+service mysqld start
+/usr/bin/mysql_secure_installation
+Install PHP
+yum --enablerepo=remi,epel install php php-zip php-mysql php-mcrypt php-xml php-mbstring
+service httpd restart
+Step 3 – Install Composer
+Composer is required for installing Laravel dependencies. So use below commands to download and use as a command in our system.
+
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/bin/composer
+chmod +x /usr/bin/composer
+Step 4 – Install Laravel
+To download latest version of Laravel, Use below command to clone master repo of laravel from github.
+
+cd /var/www
+git clone https://github.com/laravel/laravel.git
+Navigate to Laravel code directory and use composer to install all dependencies required for Laravel framework.
+
+cd /var/www/laravel
+composer install
+Dependencies installation will take some time. After than set proper permissions on files.
+
+chown -R apache.apache /var/www/laravel
+chmod -R 755 /var/www/laravel
+chmod -R 755 /var/www/laravel/storage
+
+
+
+
+#### Errors
+
+PErmission error
+sudo chcon -R -t httpd_sys_rw_content_t /var/www/html/[]
+sudo chcon -R -t httpd_sys_content_t /var/www/html/[]
+
+If you are running SELinux on your centos EC2, try switching off SELinux and test your application again. If it's SELinux that's causing this problem, it might well be because of the policy for external connection to database. You should switch SELinux back ON and enable the policy with this command.
+
+sudo setsebool -P httpd_can_network_connect_db=1
