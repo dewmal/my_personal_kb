@@ -1,0 +1,8 @@
+```
+sudo groupadd -r wildfly
+sudo useradd -r -g wildfly -d /opt/wildfly -s /sbin/nologin wildfly
+sudo cp $WILDFLY_HOME/bin/init.d/wildfly-init-debian.sh /etc/init.d/wildfly
+sudo cp $WILDFLY_HOME/bin/init.d/wildfly.conf /etc/default/wildfly
+sudo chown -R wildfly:wildfly /opt/wildfly
+sudo chown -RH wildfly: /opt/wildfly
+```
